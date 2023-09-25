@@ -36,10 +36,10 @@ class MazeBuilder{
 
     buildLabyrinth(){
 
-        let genRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+        const genRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-        let leftWall = (genRandom(0, this.size/2 - 2) * 2) + 1;
-        let rightWall = (genRandom(0, this.size/2 - 2) * 2) + 1;
+        const leftWall = (genRandom(0, this.size/2 - 2) * 2) + 1;
+        const rightWall = (genRandom(0, this.size/2 - 2) * 2) + 1;
         this.grid[leftWall][0] = this.grid[leftWall][1];
         this.grid[rightWall][this.size - 1] = this.grid[rightWall][this.size - 2];
 
