@@ -1,9 +1,13 @@
 import React from 'react';
 
+import Menu from '../organisms/menu';
+import Grid from '../organisms/grid';
+
 export default function MainPage() {
   return (
-    <div>
-      <h1>Hi, I'm the main page!</h1>
+    <div className='container'>
+      <Menu/>
+      <Grid rows={20} cols={100}/>
     </div>
   );
 }
