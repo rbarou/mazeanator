@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const Row = ({columns}) => {
+import Cell from '../atoms/cell';
 
-    const [cols, setCols] = useState(Array(columns).fill(false));
+const Row = ({ row }) => {
 
-    return(
-        <h1> Hello i'm a row component !!! and I have {columns} columns to display!</h1>
-    )
-}
+    return (
+        <div className='row-container'>
+            {row.map((col, j) => (
+                <Cell key={`cell-${j}`} value={col}/>
+            ))}
+        </div>
+    );
+};
 
 export default Row;

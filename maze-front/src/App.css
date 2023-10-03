@@ -1,22 +1,18 @@
-.App {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
 .container {
   display: flex;
+  height: 100vh;
+} 
+
+.row-container{
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100%;
-} 
+  height: 100%;
+}
 
 .menu {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: red;
@@ -25,21 +21,15 @@
 }
 
 .grid{
-  flex-grow: 1;
-  background-color: blue;
-  grid-template-columns: repeat(auto-fill,20px);
-  grid-gap: 1px;
-  width: 80%;
-  height: 100vh;
-}
-
-.row{
   display: flex;
+  flex-direction: column;
+  background-color: blue;
+  width: 80%;
 }
 
 .cell{
-  width: 20px;
-  height: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
