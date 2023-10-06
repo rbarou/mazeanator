@@ -3,19 +3,19 @@ import React, {useState, useEffect} from 'react';
 import Menu from '../organisms/menu';
 import Grid from '../organisms/grid';
 
-const requestInit = {
-  method: 'POST',
-  mode: 'cors',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({size:21})
-}
-
 export default function MainPage() {
 
   const [matrix, setMatrix] = useState([]);
+  const [size, setSize] = useState(21); 
 
+  const requestInit = {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({size:size})
+  }
 
   useEffect(() => {
 
@@ -28,7 +28,7 @@ export default function MainPage() {
 
   return (
     <div className='container'>
-      <Menu/>
+      <Menu size={size} setSize={setSize}/>
       <Grid matrix={matrix}/>
     </div>
   );
