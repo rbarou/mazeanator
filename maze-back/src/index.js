@@ -18,12 +18,12 @@ app.get('/', (_, res) => res.send('Hello World'));
 
 app.post('/initGrid', (req, res) => {
 
-    const height = req.body.height ? parseInt(req.body.height) : 21;
-    const width  = req.body.width  ? parseInt(req.body.width)  : 21;
+    const size = req.body.size ? parseInt(req.body.size) : 21;
 
     const maze = new MazeBuilder()
-        .setSize(height, width)
+        .setSize(size)
         .initGrid()
+        .buildLabyrinth()
 
     res.send(maze.grid)
 });

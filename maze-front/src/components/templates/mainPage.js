@@ -9,12 +9,13 @@ const requestInit = {
   headers: {
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({height: 21, width:21})
+  body: JSON.stringify({size:21})
 }
 
 export default function MainPage() {
 
   const [matrix, setMatrix] = useState([]);
+
 
   useEffect(() => {
 
