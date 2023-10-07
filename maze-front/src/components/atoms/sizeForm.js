@@ -10,11 +10,13 @@ const SizeForm = ({size,setSize}) => {
     }
 
     const increase = () => {
-        setSize(size+2)
+        const value = size+2 < minSize ? minSize : size+2;
+        setSize(value)
     }
 
     const handleChange = (event) => {
-        const value = parseInt(event.target.value) < minSize ? minSize : parseInt(event.target.value); 
+        if(event.target.value === '') return setSize(0);
+        const value = parseInt(event.target.value) <= 0 ? 0 : parseInt(event.target.value); 
         setSize(value);
     }
 
@@ -29,7 +31,7 @@ const SizeForm = ({size,setSize}) => {
                         <path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z" fill="#000000"></path>
                     </g>
                 </svg>
-                <input type="number" id="size" name="size" onChange={handleChange} value={size}/>
+                <input type="text" id="size" name="size" onChange={handleChange} value={size} min={0}/>
                 <svg viewBox="0 0 1024 1024" version="1.1" fill="#000000" onClick={increase}>
                     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                     <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
