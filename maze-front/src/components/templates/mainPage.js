@@ -8,7 +8,7 @@ export default function MainPage() {
   const [matrix, setMatrix] = useState([]);
   const [size, setSize] = useState(21); 
 
-  const requestInit = {
+  const request = {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -17,18 +17,24 @@ export default function MainPage() {
     body: JSON.stringify({size:size})
   }
 
+  const buildLabyrinth = async () => {
+    const data = await fetch('http://localhost:3000/initGrid', request);
+    setMatrix(await data.json());
+  }
+
   useEffect(() => {
 
     const fetchData = async () => {
-      const data = await fetch('http://localhost:3000/initGrid', requestInit);
+      const data = await fetch('http://localhost:3000/initGrid', request);
       setMatrix(await data.json());
     }
     fetchData().catch(err => console.log(err));
+    return () => {};
     }, []);
 
   return (
     <div className='container'>
-      <Menu size={size} setSize={setSize}/>
+      <Menu size={size} setSize={setSize} onSendRequest={buildLabyrinth}/>
       <Grid matrix={matrix}/>
     </div>
   );
