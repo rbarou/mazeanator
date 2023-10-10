@@ -7,6 +7,7 @@ class MazeBuilder{
         this.emptyCell = new Set();
         this.grid = [];
         this.walls = [];
+        this.visualization = [];
     }
 
     setSize(size){
@@ -34,9 +35,10 @@ class MazeBuilder{
         return this;
     }
 
-    buildLabyrinth(){
+    buildLabyrinth(showSteps = false){
 
         const genRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+        this.visualization = [];
 
         const leftWall = (genRandom(0, this.size/2 - 2) * 2) + 1;
         const rightWall = (genRandom(0, this.size/2 - 2) * 2) + 1;
@@ -44,7 +46,7 @@ class MazeBuilder{
         this.grid[rightWall][this.size - 1] = this.grid[rightWall][this.size - 2];
 
         while(this.mustBreakWall()){
-
+            
             let x = genRandom(1, this.size - 2);
             let y = (x % 2 == 0)
                 ? (genRandom(0, this.size/2 - 2) * 2) + 1
@@ -71,8 +73,11 @@ class MazeBuilder{
                     }
                 }
             }
+            if(showSteps && JSON.stringify(this.grid) !== JSON.stringify(this.visualization[this.visualization.length - 1])){
+                this.visualization.push(JSON.parse(JSON.stringify(this.grid)));
+            }
         }
-        return this;
+        return this
     }
 
     saveToTxt(path){

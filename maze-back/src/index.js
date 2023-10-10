@@ -19,13 +19,16 @@ app.get('/', (_, res) => res.send('Hello World'));
 app.post('/initGrid', (req, res) => {
 
     const size = req.body.size ? parseInt(req.body.size) : 21;
+    const showSteps = req.body.showSteps ? req.body.showSteps : false;
 
     const maze = new MazeBuilder()
         .setSize(size)
         .initGrid()
-        .buildLabyrinth()
-
-    res.send(maze.grid)
+        .buildLabyrinth(showSteps);
+    if(showSteps){
+        res.send(maze.visualization)
+    }
+    else res.send(maze.grid)
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

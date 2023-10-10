@@ -14,12 +14,21 @@ export default function MainPage() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({size:size})
+    body: JSON.stringify({
+      size:size,
+      showSteps:true
+    })
   }
 
   const buildLabyrinth = async () => {
     const data = await fetch('http://localhost:3000/initGrid', request);
-    setMatrix(await data.json());
+    let tensor = await data.json();
+    if(JSON.parse(request.body).showSteps){
+      for(const matrix of tensor){
+        setMatrix(matrix);
+        await new Promise(resolve => setTimeout(resolve, 10));
+      }
+    }
   }
 
   useEffect(() => {
