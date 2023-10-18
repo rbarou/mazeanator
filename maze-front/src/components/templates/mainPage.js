@@ -6,7 +6,8 @@ import Grid from '../organisms/grid';
 export default function MainPage() {
 
   const [matrix, setMatrix] = useState([]);
-  const [size, setSize] = useState(21); 
+  const [size, setSize] = useState(21);
+  const [showSteps, setShowSteps] = useState(false);
 
   const request = {
     method: 'POST',
@@ -16,7 +17,7 @@ export default function MainPage() {
     },
     body: JSON.stringify({
       size:size,
-      showSteps:true
+      showSteps:showSteps
     })
   }
 
@@ -24,11 +25,13 @@ export default function MainPage() {
     const data = await fetch('http://localhost:3000/initGrid', request);
     let tensor = await data.json();
     if(JSON.parse(request.body).showSteps){
+      let timeout = 1000;
       for(const matrix of tensor){
         setMatrix(matrix);
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise(resolve => setTimeout(resolve, timeout));
+        if(timeout > 10) timeout /= 1.5;
       }
-    }
+    }else setMatrix(tensor);
   }
 
   useEffect(() => {
@@ -43,7 +46,7 @@ export default function MainPage() {
 
   return (
     <div className='container'>
-      <Menu size={size} setSize={setSize} onSendRequest={buildLabyrinth}/>
+      <Menu size={size} setSize={setSize} setShowSteps={setShowSteps} onSendRequest={buildLabyrinth}/>
       <Grid matrix={matrix}/>
     </div>
   );

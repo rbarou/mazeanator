@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SizeForm = ({size,setSize}) => {
+const SizeForm = ({size,setSize,setShowSteps}) => {
 
     const minSize = 3;
 
@@ -40,6 +40,8 @@ const SizeForm = ({size,setSize}) => {
                     </g>
                 </svg>
             </div>
+            <input type="checkbox" id="showSteps" name="showSteps" value="showSteps" onClick={(event) => setShowSteps(event.target.checked)}/>
+            <label>Show steps of the generation (can cause some performances issues)</label>
         </>
     );
 }
