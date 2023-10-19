@@ -1,5 +1,6 @@
 const config = require('../config/config');
 const MazeBuilder = require('./mazeBuilder');
+const Solver = require('./solver');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -34,7 +35,10 @@ app.post('/initGrid', (req, res) => {
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 let maze = new MazeBuilder()
-    .setSize(59,59)
+    .setSize(11,11)
     .initGrid()
     .buildLabyrinth()
     .saveToTxt('../out/output.json');
+
+let solver = new Solver(maze.grid);
+solver.solve(maze.grid);

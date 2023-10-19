@@ -1,3 +1,5 @@
+const Queue = require('./queue.js');
+
 class Solver{
 
     constructor(grid){
@@ -5,35 +7,43 @@ class Solver{
     }
 
     solve(grid){
+
         let departure, arrival;
+
         for(let i=0; i<grid.length; i++){
             if(grid[i][0] != -1){
                 departure = [i,0];
                 break;
             }
         }
+        
         for(let i=0; i<grid.length; i++){
             if(grid[i][grid.length-1] != -1){
                 arrival = [i,grid.length-1];
                 break;
             }
         }
-        let cpt = 1;
-        this.result[arrival[0]][arrival[1]] = cpt++;
-        let current = arrival;
-        while(JSON.stringify(current) !== JSON.stringify(departure)){
-            current = this.nextStep(current, cpt, grid);
-            cpt++;
-        }
+
+        this.bfs(grid, arrival);
+        
+
         return this.result;
 
     }
 
-    nextStep(current, cpt, grid){
-        let neighbors = this.getNeighbors(current, grid);
-        let next = neighbors.find(n => this.result[n[0]][n[1]] == cpt-1);
-        this.result[next[0]][next[1]] = cpt;
-        return next;
+    bfs(grid, node){
+        const f = new Queue();
+        f.enqueue(node);
+        this.result[node[0]][node[1]] = 1;
+        while(!f.isEmpty()){
+            const current = f.dequeue();
+            for(const neighbor of this.getNeighbors(current, grid)){
+                if(this.result[neighbor[0]][neighbor[1]] == 0){
+                    this.result[neighbor[0]][neighbor[1]] = this.result[current[0]][current[1]] + 1;
+                    f.enqueue(neighbor);
+                }
+            }
+        }
     }
 
     getNeighbors([i, j], grid){
@@ -45,3 +55,5 @@ class Solver{
         return neighbors;
     }
 }
+
+module.exports = Solver;
