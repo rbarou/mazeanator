@@ -44,6 +44,7 @@ export default function MainPage() {
     return () => {};
     }, []);
 
+
   return (
     <div className='container'>
       <Menu size={size} setSize={setSize} setShowSteps={setShowSteps} onSendRequest={buildLabyrinth}/>

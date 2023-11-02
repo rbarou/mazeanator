@@ -1,9 +1,11 @@
 import React from 'react';
 
+import HeaderComponent from '../atoms/headerComponent';
+
 const Solver = () => {
     return (
         <div className='solver'>
-            <h1>Solver</h1>
+            <HeaderComponent headerTitle={"Solver"}/>
         </div>
     );
 }
