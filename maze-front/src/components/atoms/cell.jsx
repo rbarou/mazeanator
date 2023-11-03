@@ -6,14 +6,7 @@ const Cell = ({rowId, columnId, value, cellSize}) => {
     const backgroundColor = (value === -1) ? 'black' : emptyCellColor(rowId,columnId);
 
     return(
-        <div className='cell' style={
-            {
-                backgroundColor: backgroundColor,
-                height: cellSize,
-                width: cellSize
-            }}>
-
-        </div>
+        <div className='cell' style={{backgroundColor: backgroundColor,}}></div>
     )
 }
 

@@ -21,8 +21,8 @@ const SizeForm = ({size,setSize,setShowSteps}) => {
     }
 
     return(
-        <>
-            <h1>Chose labyrinth's size</h1>
+        <div className='sizeFormContainer'>
+            <h2 className='sizeFormHeader'>Chose labyrinth's size</h2>
             <div className='sizeForm'>
                 <svg viewBox="0 0 1024 1024" version="1.1" fill="#000000" onClick={decrease}>
                     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -40,9 +40,14 @@ const SizeForm = ({size,setSize,setShowSteps}) => {
                     </g>
                 </svg>
             </div>
-            <input type="checkbox" id="showSteps" name="showSteps" value="showSteps" onClick={(event) => setShowSteps(event.target.checked)}/>
-            <label>Show steps of the generation (can cause some performances issues)</label>
-        </>
+            <div className='showStepsInputContainer'>
+                <label>
+                    Show steps of the generation <br/>
+                    (can cause some performances issues)
+                </label>
+                <input type="checkbox" id="showSteps" name="showSteps" value="showSteps" onClick={(event) => setShowSteps(event.target.checked)}/> 
+            </div>
+        </div>
     );
 }
 

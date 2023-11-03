@@ -26,7 +26,6 @@ class Solver{
 
         this.bfs(grid, arrival);
         
-
         return this.result;
 
     }
