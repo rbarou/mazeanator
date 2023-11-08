@@ -26,10 +26,32 @@ class Solver{
 
         this.bfs(grid, arrival);
         
-        return this.result;
-
+        let current = departure;
+        const path = [current];
+        while(current[0] !== arrival[0] || current[1] !== arrival[1]){
+            let neighbors = this.getNeighbors(current, grid);
+            current = this.minNeighbor(neighbors);
+            path.push(current);
+        }
+        
+        return path;
     }
 
+    minNeighbor(neighborsIndexes){
+
+        let [minRow, minCol] = neighborsIndexes[0];
+        let min = this.result[minRow][minCol];
+
+        for(const [row, col] of neighborsIndexes){
+            const value = this.result[row][col];
+            if(value < min){
+                min = value;
+                [minRow, minCol] = [row, col];
+            }
+        }
+        return [minRow, minCol];
+    }
+    
     bfs(grid, node){
         const f = new Queue();
         f.enqueue(node);

@@ -35,24 +35,24 @@ class MazeBuilder{
         return this;
     }
 
-    buildLabyrinth(showSteps = false){
+    genRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-        const genRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    buildLabyrinth(showSteps = false, complexify = true){
         this.visualization = [];
 
-        const leftWall = (genRandom(0, this.size/2 - 2) * 2) + 1;
-        const rightWall = (genRandom(0, this.size/2 - 2) * 2) + 1;
+        const leftWall = (this.genRandom(0, this.size/2 - 2) * 2) + 1;
+        const rightWall = (this.genRandom(0, this.size/2 - 2) * 2) + 1;
         this.grid[leftWall][0] = this.grid[leftWall][1];
         this.grid[rightWall][this.size - 1] = this.grid[rightWall][this.size - 2];
 
         while(this.mustBreakWall()){
             
-            let x = genRandom(1, this.size - 2);
+            let x = this.genRandom(1, this.size - 2);
             let y = (x % 2 == 0)
-                ? (genRandom(0, this.size/2 - 2) * 2) + 1
-                : (genRandom(0, this.size/2 - 3) * 2) + 2
+                ? (this.genRandom(0, this.size/2 - 2) * 2) + 1
+                : (this.genRandom(0, this.size/2 - 3) * 2) + 2
 
-            let cell1,cell2;
+            let cell1, cell2;
 
             if(this.grid[x-1][y] == -1){
                 cell1 = this.grid[x][y-1];
@@ -73,11 +73,37 @@ class MazeBuilder{
                     }
                 }
             }
-            if(showSteps && JSON.stringify(this.grid) !== JSON.stringify(this.visualization[this.visualization.length - 1])){
-                this.visualization.push(JSON.parse(JSON.stringify(this.grid)));
+            if(showSteps) this.visualize();
+        }
+        if(complexify) this.complexify();
+        
+        console.log(this.grid)
+        return this
+    }
+
+    complexify(){
+        for(let i=1; i<this.grid.length-1; i++){
+            for(let j=1; j<this.grid.length-1; j++){
+                if(this.grid[i][j] == -1 && this.getNeighbors(i,j).filter(x => x !== -1).length === 2){
+                    if(this.genRandom(1,2) % 2 == 0)
+                        this.grid[i][j] = this.emptyCell.values().next().value;
+                }
             }
         }
-        return this
+    }
+
+    getNeighbors(i,j){
+        const neighbors = [];
+        neighbors.push(this.grid[i-1][j]);
+        neighbors.push(this.grid[i+1][j]);
+        neighbors.push(this.grid[i][j-1]);
+        neighbors.push(this.grid[i][j+1]);
+        return neighbors;
+    }
+
+    visualize(){
+        if (JSON.stringify(this.grid) !== JSON.stringify(this.visualization[this.visualization.length - 1]))
+            this.visualization.push(JSON.parse(JSON.stringify(this.grid)));
     }
 
     saveToTxt(path){

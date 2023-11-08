@@ -55,7 +55,7 @@
   height: 100%;
 }
 
-.generateButton{
+.customButton{
   background-color: #37BCFF;
   color: #fff;
   border: none;
@@ -65,7 +65,7 @@
   font-size: 16px;
 }
 
-.buttonContainer{
+.customButtonContainer{
   display: flex;
   justify-content: center;
   margin-top: 10px;

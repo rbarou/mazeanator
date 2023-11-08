@@ -15,11 +15,13 @@ app.use((_, res, next) => {
     next();
 });
 
-let maze = new MazeBuilder();
+let maze;
 
 app.get('/', (_, res) => res.send('Hello World'));
 
 app.post('/initGrid', (req, res) => {
+
+    maze = new MazeBuilder();
 
     const size = req.body.size ? parseInt(req.body.size) : 21;
     const showSteps = req.body.showSteps ? req.body.showSteps : false;
@@ -33,18 +35,10 @@ app.post('/initGrid', (req, res) => {
     else res.send(maze.grid)
 });
 
-app.post('/solve', (req, res) => {
+app.get('/solve', (_, res) => {
     let solver = new Solver(maze.grid);
-    solver.solve(maze.grid);
+    res.send(solver.solve(maze.grid));
+
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
-maze.setSize(11,11)
-    .initGrid()
-    .buildLabyrinth()
-    .saveToTxt('../out/output.json');
-
-let solver = new Solver(maze.grid);
-console.log(solver.solve(maze.grid));
-
