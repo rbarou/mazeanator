@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Row from '../molecules/row';
 import PropTypes from 'prop-types';
 

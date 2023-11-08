@@ -75,22 +75,25 @@ class MazeBuilder{
             }
             if(showSteps) this.visualize();
         }
-        if(complexify) this.complexify();
+        if(complexify) this.complexify(showSteps);
         
         console.log(this.grid)
         return this
     }
 
-    complexify(){
+    complexify(showSteps){
         for(let i=1; i<this.grid.length-1; i++){
             for(let j=1; j<this.grid.length-1; j++){
                 if(this.grid[i][j] == -1 && this.getNeighbors(i,j).filter(x => x !== -1).length === 2){
-                    if(this.genRandom(1,2) % 2 == 0)
+                    if(this.genRandom(1,2) % 2 == 0){
                         this.grid[i][j] = this.emptyCell.values().next().value;
+                        if(showSteps) this.visualize();
+                    }
                 }
             }
         }
     }
+
 
     getNeighbors(i,j){
         const neighbors = [];
