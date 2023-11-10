@@ -9,11 +9,11 @@ import '../../App.css';
 
 import PropTypes from 'prop-types';
 
-export default function Menu({size, setSize, onSendRequest, onSolveRequest, setShowSteps}) {
+export default function Menu({size, setSize, onSendRequest, onSolveRequest, setShowSteps, setComplexify}) {
     return (
         <div className='menu'>
             <HeaderSettings headerTitle={'Settings'} />
-            <Generator size={size} setSize={setSize} setShowSteps={setShowSteps} onSendRequest={onSendRequest} />
+            <Generator size={size} setSize={setSize} setShowSteps={setShowSteps} onSendRequest={onSendRequest} setComplexify={setComplexify}/>
             <Solver onSolveRequest={onSolveRequest} />
         </div>
     );

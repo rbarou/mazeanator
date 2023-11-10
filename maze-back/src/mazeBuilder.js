@@ -37,7 +37,7 @@ class MazeBuilder{
 
     genRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-    buildLabyrinth(showSteps = false, complexify = true){
+    buildLabyrinth(showSteps = false, complexify = false){
         this.visualization = [];
 
         const leftWall = (this.genRandom(0, this.size/2 - 2) * 2) + 1;
@@ -76,8 +76,6 @@ class MazeBuilder{
             if(showSteps) this.visualize();
         }
         if(complexify) this.complexify(showSteps);
-        
-        console.log(this.grid)
         return this
     }
 

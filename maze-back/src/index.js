@@ -25,10 +25,11 @@ app.post('/initGrid', (req, res) => {
 
     const size = req.body.size ? parseInt(req.body.size) : 21;
     const showSteps = req.body.showSteps ? req.body.showSteps : false;
+    const complexify = req.body.complexify;
 
     maze.setSize(size)
         .initGrid()
-        .buildLabyrinth(showSteps);
+        .buildLabyrinth(showSteps, complexify);
     if(showSteps){
         res.send(maze.visualization)
     }

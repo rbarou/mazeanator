@@ -11,11 +11,12 @@
     "react-dom": "^18.2.0",
     "react-scripts": "^3.0.1",
     "react-slider": "^2.0.6",
+    "toolcool-range-slider": "^4.0.28",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=3001 && react-scripts start",
-    "build": "react-scripts build",
+    "start": "set PORT=3001 && react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

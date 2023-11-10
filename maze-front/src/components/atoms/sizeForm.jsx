@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SizeForm = ({size,setSize,setShowSteps}) => {
+const SizeForm = ({size,setSize,setShowSteps,setComplexify}) => {
 
     const minSize = 3;
 
@@ -46,6 +46,12 @@ const SizeForm = ({size,setSize,setShowSteps}) => {
                     (can cause some performances issues)
                 </label>
                 <input type="checkbox" id="showSteps" name="showSteps" value="showSteps" onClick={(event) => setShowSteps(event.target.checked)}/> 
+            </div>
+            <div className='showStepsInputContainer'>
+                <label>
+                    Make this labyrinth unperfect : 
+                </label>
+                <input type="checkbox" id="complexify" name="complexify" value="complexify" onClick={(event) => setComplexify(event.target.checked)}/> 
             </div>
         </div>
     );

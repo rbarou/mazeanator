@@ -1,31 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import HeaderComponent from '../atoms/headerComponent';
 import SizeForm from '../atoms/sizeForm';
 import CustomButton from '../atoms/customButton';
-import Slider from 'react-slider';
 
-const Generator = ({size,setSize,onSendRequest,setShowSteps}) => {  
-
-    const [sliderValue, setSliderValue] = useState(0);
-
-    const handleSliderChange = (value) => {
-        setSliderValue(value);
-    };
-
+const Generator = ({size,setSize,onSendRequest,setShowSteps, setComplexify}) => {  
     return (
         <div className="generator">
             <HeaderComponent headerTitle={"Generator"}/>
-            <SizeForm size={size} setSize={setSize} setShowSteps={setShowSteps}/>
-            <div>
-                <h1>Slider Value: {sliderValue}%</h1>
-                <Slider
-                    value={sliderValue}
-                    onChange={handleSliderChange}
-                    min={0}
-                    max={100}
-                />
-                </div>
+            <SizeForm size={size} setSize={setSize} setShowSteps={setShowSteps} setComplexify={setComplexify}/>
             <CustomButton handleClick={onSendRequest} text={"Generate !"}/>
         </div>
     );

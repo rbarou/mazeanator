@@ -7,8 +7,10 @@ export default function MainPage() {
 
   const [matrix, setMatrix] = useState([]);
   const [path, setPath] = useState([]);
+
   const [size, setSize] = useState(21);
   const [showSteps, setShowSteps] = useState(false);
+  const [complexify, setComplexify] = useState(false);
 
   const request = {
     method: 'POST',
@@ -18,9 +20,10 @@ export default function MainPage() {
     },
     body: JSON.stringify({
       size:size,
-      showSteps:showSteps
+      showSteps:showSteps,
+      complexify:complexify,
     })
-  }
+  };
 
   const buildLabyrinth = async () => {
     setPath([]);
@@ -55,7 +58,7 @@ export default function MainPage() {
 
   return (
     <div className='container'>
-      <Menu size={size} setSize={setSize} setShowSteps={setShowSteps} onSendRequest={buildLabyrinth} onSolveRequest={solveLabyrinth}/>
+      <Menu size={size} setSize={setSize} setShowSteps={setShowSteps} setComplexify={setComplexify} onSendRequest={buildLabyrinth} onSolveRequest={solveLabyrinth}/>
       <Grid matrix={matrix} path={path}/>
     </div>
   );

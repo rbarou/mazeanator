@@ -6,17 +6,15 @@ const Cell = ({rowId, columnId, value, path}) => {
     const isPartOfPath = (path,rowId,columnId) => {
         const targetArray = [rowId,columnId];
         let res = path.some((array) => JSON.stringify(array) === JSON.stringify(targetArray));
-        path = [];
         return res;
     };
 
-    const backgroundColor = (value === -1) 
-        ? 'black' 
-        : (
-            isPartOfPath(path,rowId,columnId) 
-            ? 'red' 
-            : emptyCellColor(rowId,columnId)
-        );
+    let backgroundColor;
+    if (value === -1) {
+        backgroundColor = 'black';
+    } else {
+        backgroundColor = isPartOfPath(path, rowId, columnId) ? 'red' : emptyCellColor(rowId, columnId);
+    }
 
     return(
         <div className='cell' style={{backgroundColor: backgroundColor,}}></div>
