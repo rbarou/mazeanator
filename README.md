@@ -6,14 +6,16 @@
 
     1. Open a terminal window in the project directory.
     2. Move into the maze-back repository
-    3. run the `npm run start` command (or use the dockerfile)
+    3. Run the `npm i`command
+    4. run the `npm run start` command (or use the dockerfile)
 
 ## To run the client
 
     1. Open a terminal window in the project directory.
     2. Move into the maze-front repository
-    3. run the `npm run start` command (or use the dockerfile)
-    4. Then, use your favorite internet browser and go to localhost:3001
+    3. Run the `npm i`command
+    4. run the `npm run start` command (or use the dockerfile)
+    5. Then, use your favorite internet browser and go to localhost:3001
 
 ## Features
   1. You're able to generate a labyrinth and chose the size by using the Generator. You're also able to visualize the generation
