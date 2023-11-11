@@ -17,7 +17,7 @@
 
 ## Features
   1. You're able to generate a labyrinth and chose the size by using the Generator. You're also able to visualize the generation
-    ![alt text](https://github.com/Kolienka/mazeanator/blob/main/resources/img/Unperfect_labyrinth.png)
+    ![image](https://github.com/Kolienka/mazeanator/assets/46573303/0840d157-df2f-4f51-9e06-27c5238c0f62)
   2. It is possible to solve the labyrinth by clicking on the button in the "Solve" section
     ![alt text](https://github.com/Kolienka/mazeanator/blob/main/resources/img/solving_screenshot.png)
   3. It is possible to generate an unperfect labyrinth by clicking on the appropriate checkbox
