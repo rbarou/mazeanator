@@ -1,30 +1,44 @@
 import React from 'react';
 
-const SizeForm = ({size,setSize,setShowSteps,setComplexify}) => {
+const SizeForm = ({size,setRequestArguments}) => {
 
     const minSize = 3;
 
-    const decrease = () => {
-        const value = size-2 < minSize ? minSize : size-2;
-        setSize(value)
-    }
-
-    const increase = () => {
-        const value = size+2 < minSize ? minSize : size+2;
-        setSize(value)
+    const updateSize = (delta) => {
+        const value = size + delta < minSize ? minSize : size+ delta;
+        setRequestArguments(prevState => ({
+            ...prevState,
+            size : value
+        }));
     }
 
     const handleChange = (event) => {
-        if(event.target.value === '') return setSize(0);
         const value = parseInt(event.target.value) <= 0 ? 0 : parseInt(event.target.value); 
-        setSize(value);
+        setRequestArguments(prevState => ({
+            ...prevState,
+            size: value
+        }));
+    }
+
+    const handleShowingSteps = (event) => {
+        setRequestArguments(prevState => ({
+            ...prevState,
+            showSteps: event.target.checked
+        }));
+    }
+
+    const handleComplexify = (event) => {
+        setRequestArguments(prevState => ({
+            ...prevState,
+            complexify: event.target.checked
+        }));
     }
 
     return(
         <div className='sizeFormContainer'>
             <h2 className='sizeFormHeader'>Chose labyrinth's size</h2>
             <div className='sizeForm'>
-                <svg viewBox="0 0 1024 1024" version="1.1" fill="#000000" onClick={decrease}>
+                <svg viewBox="0 0 1024 1024" version="1.1" fill="#000000" onClick={e => updateSize(-2)}>
                     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                     <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
@@ -32,7 +46,7 @@ const SizeForm = ({size,setSize,setShowSteps,setComplexify}) => {
                     </g>
                 </svg>
                 <input type="text" id="size" name="size" onChange={handleChange} value={size} min={0}/>
-                <svg viewBox="0 0 1024 1024" version="1.1" fill="#000000" onClick={increase}>
+                <svg viewBox="0 0 1024 1024" version="1.1" fill="#000000" onClick={e => updateSize(2)}>
                     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                     <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
@@ -45,13 +59,13 @@ const SizeForm = ({size,setSize,setShowSteps,setComplexify}) => {
                     Show steps of the generation <br/>
                     (can cause some performances issues)
                 </label>
-                <input type="checkbox" id="showSteps" name="showSteps" value="showSteps" onClick={(event) => setShowSteps(event.target.checked)}/> 
+                <input type="checkbox" id="showSteps" name="showSteps" value="showSteps" onClick={(event) => handleShowingSteps(event)}/> 
             </div>
             <div className='showStepsInputContainer'>
                 <label>
                     Make this labyrinth unperfect : 
                 </label>
-                <input type="checkbox" id="complexify" name="complexify" value="complexify" onClick={(event) => setComplexify(event.target.checked)}/> 
+                <input type="checkbox" id="complexify" name="complexify" value="complexify" onClick={(event) => handleComplexify(event)}/> 
             </div>
         </div>
     );

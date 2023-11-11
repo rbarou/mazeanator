@@ -39,7 +39,6 @@ app.post('/initGrid', (req, res) => {
 app.get('/solve', (_, res) => {
     let solver = new Solver(maze.grid);
     res.send(solver.solve(maze.grid));
-
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

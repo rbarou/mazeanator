@@ -8,9 +8,11 @@ export default function MainPage() {
   const [matrix, setMatrix] = useState([]);
   const [path, setPath] = useState([]);
 
-  const [size, setSize] = useState(21);
-  const [showSteps, setShowSteps] = useState(false);
-  const [complexify, setComplexify] = useState(false);
+  const [requestArguments, setRequestArguments] = useState({
+    size:21,
+    showSteps:false,
+    complexify:false,
+  });
 
   const request = {
     method: 'POST',
@@ -19,9 +21,9 @@ export default function MainPage() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      size:size,
-      showSteps:showSteps,
-      complexify:complexify,
+      size: requestArguments.size,
+      showSteps:requestArguments.showSteps,
+      complexify:requestArguments.complexify,
     })
   };
 
@@ -46,19 +48,14 @@ export default function MainPage() {
   }
 
   useEffect(() => {
-
-    const fetchData = async () => {
-      const data = await fetch('http://localhost:3000/initGrid', request);
-      setMatrix(await data.json());
-    }
-    fetchData().catch(err => console.log(err));
+    buildLabyrinth();
     return () => {};
     }, []);
 
 
   return (
     <div className='container'>
-      <Menu size={size} setSize={setSize} setShowSteps={setShowSteps} setComplexify={setComplexify} onSendRequest={buildLabyrinth} onSolveRequest={solveLabyrinth}/>
+      <Menu size={requestArguments.size} setRequestArguments={setRequestArguments} onSendRequest={buildLabyrinth} onSolveRequest={solveLabyrinth}/>
       <Grid matrix={matrix} path={path}/>
     </div>
   );

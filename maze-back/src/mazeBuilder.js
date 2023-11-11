@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 class MazeBuilder{
 
     constructor(){
@@ -105,18 +103,6 @@ class MazeBuilder{
     visualize(){
         if (JSON.stringify(this.grid) !== JSON.stringify(this.visualization[this.visualization.length - 1]))
             this.visualization.push(JSON.parse(JSON.stringify(this.grid)));
-    }
-
-    saveToTxt(path){
-        const jsonArray = JSON.stringify(this.grid);
-        fs.writeFile(path, jsonArray, err => {
-            if (err) {
-                console.log('Error writing file', err)
-            } else {
-                console.log('Successfully wrote file')
-            }
-        });
-        return this;
     }
 
     mustBreakWall = () =>  this.emptyCell.size > 1;
