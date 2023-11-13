@@ -1,0 +1,13 @@
+services:
+  maze-back:
+    image: maze-back
+    ports:
+      - 127.0.0.1:3000:3000
+    working_dir: /maze-back
+  maze-front:
+    image: maze-front-image
+    ports:
+      - 127.0.0.1:3001:3001
+    working_dir: /maze-front
+    command: npm run start
+      
