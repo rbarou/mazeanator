@@ -8,6 +8,8 @@ services:
     image: maze-front-image
     ports:
       - 127.0.0.1:3001:3001
+    volumes:
+      - ./maze-front:/maze-front
     working_dir: /maze-front
     command: npm run start
       

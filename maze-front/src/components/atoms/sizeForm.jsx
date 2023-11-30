@@ -13,7 +13,10 @@ const SizeForm = ({size,setRequestArguments}) => {
     }
 
     const handleChange = (event) => {
-        const value = parseInt(event.target.value) <= 0 ? 0 : parseInt(event.target.value); 
+        let value = (parseInt(event.target.value) <= minSize) 
+            ? minSize 
+            : parseInt(event.target.value);
+        if(isNaN(value)) value = minSize;
         setRequestArguments(prevState => ({
             ...prevState,
             size: value
