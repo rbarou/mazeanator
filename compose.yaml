@@ -11,5 +11,5 @@ services:
     volumes:
       - ./maze-front:/maze-front
     working_dir: /maze-front
-    command: npm run start
+    command: npm run start:dev
       

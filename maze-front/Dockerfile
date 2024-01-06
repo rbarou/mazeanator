@@ -11,5 +11,5 @@ RUN npm install react-scripts@latest --legacy-peer-deps
 
 COPY . ./
 
-CMD ["npm", "start"]
+CMD ["npm", "start:dev"]
 
